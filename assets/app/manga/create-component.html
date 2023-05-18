@@ -1,0 +1,56 @@
+<h1>Criar Livros</h1>
+
+<div id="book-form" class="book-form">
+  <label>Procurar:</label>
+  <input type="text" [(ngModel)]="inputText" (ngModelChange)="onInputChange()" placeholder="Digite algo" />
+  <label>Opções:</label>
+  <select class="form-select" [(ngModel)]="selectedItem" (change)="onSelectionChange($event.target.value)">
+    <option *ngFor="let item of apiData;let i = index" [value]="i">{{ item.title }}</option>
+  </select>
+  <div class="book-form2" *ngIf="apiData && apiData.length > 0; else Loading">
+    <img id="cover-preview" [src]="apiData[selectedItem].images.jpg.image_url" alt="Preview da Capa do Livro"
+      class="limited-size">
+
+    <label for="title">Titulo:</label>
+    <input [value]="apiData[selectedItem].title" [disabled]="true" type="text" id="genre" name="genre">
+
+    <label for="book-title">Titulo Japones:</label>
+    <input [value]="apiData[selectedItem].title_japanese" [disabled]="true" type="text" id="book-title"
+      name="book-title">
+
+    <label for="genre">Gêneros:</label>
+    <input [value]="apiData[selectedItem].genres" [disabled]="true" type="text" id="genre" name="genre">
+
+    <label for="author">Autores:</label>
+    <input [value]="apiData[selectedItem].authors" [disabled]="true" type="text" id="author" name="author">
+
+    <button (click)='toCreateAuthors()' [disabled]="!apiData[selectedItem]" type="submit">Adicionar Autores</button>
+    
+    <label for="synopsis">Sinopse:</label>
+    <textarea [value]="apiData[selectedItem].synopsis" id="synopsis" name="synopsis" rows="5"></textarea>
+
+    <label for="synopsis">Resume About:</label>
+    <textarea [value]="apiData[selectedItem].background" id="background" name="background" rows="5"></textarea>
+
+    <label for="volumes">Volumes:</label>
+    <input [value]="apiData[selectedItem].volumes" [disabled]="true" type="number" id="volumes" name="volumes">
+
+    <label for="volumes">Publicado:</label>
+    <input [value]="apiData[selectedItem].published.string" [disabled]="true" type="string" id="published"
+      name="published">
+
+    <label for="chapters">Capítulos:</label>
+    <input [value]="apiData[selectedItem].chapters" [disabled]="true" type="number" id="chapters" name="chapters">
+
+    <label for="estoque">Quantidade em estoque:</label>
+    <input [(ngModel)]="quantity" (ngModelChange)="onChangeQuantity()" type="number" id="estoque" name="estoque"
+      required>
+
+    <label for="valor">Valor do Livro:</label>
+    <input [(ngModel)]="price" (ngModelChange)="onChangePrice()" type="number" id="valor" name="valor" step="0.01"
+      min="0" required>
+
+
+    <button (click)='toCreate()' [disabled]="!apiData[selectedItem]" type="submit">Criar Livro</button>
+  </div>
+</div>

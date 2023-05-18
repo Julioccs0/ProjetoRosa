@@ -1,0 +1,16 @@
+<header>
+    <div class="header-content">
+        <h1>Minha Biblioteca</h1>
+        <nav>
+            <ul>
+                <li><a [routerLink]="['list']" href="#listas">Lista</a></li>
+                <hr height="12rem" orientation="vertical" class="Divider-styled__BaseComponent-sc-56817bd1-0 Divider-styled__PrimaryDivider-sc-56817bd1-1 bFnOmr cvrojB">
+                <li><a [routerLink]="['reserva']" href="#reserva">Reserva</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="row spacing">
+    <router-outlet></router-outlet>
+</div>

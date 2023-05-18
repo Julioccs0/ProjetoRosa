@@ -1,0 +1,13 @@
+<section>
+    <div class="content">
+        <h2>Lista de Reservas</h2>
+        <ul class="reservations" *ngFor="let item of Data">
+            <li>
+                <h3>{{item.livro.title}}</h3>
+                <p>Por {{item.livro.authors[0].name}}</p>
+                <p>Reservado: {{item.reserva}}</p>
+                <button (click)='removeReserva(item._id)'>Remove</button>
+            </li>
+        </ul>
+    </div>
+</section>
